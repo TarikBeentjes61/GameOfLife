@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameOfLife : MonoBehaviour {
+    public float UpdateRate;
     public Sprite Tile;
     public int Width;
     public int Height;    
@@ -15,8 +16,8 @@ public class GameOfLife : MonoBehaviour {
     
     private void Start() {
         BuildGrid();
-        InvokeRepeating(nameof(DrawGrid), 0, 0.2f);
-        InvokeRepeating(nameof(UpdateStates), 0, 0.2f);
+        InvokeRepeating(nameof(DrawGrid), 0, UpdateRate);
+        InvokeRepeating(nameof(UpdateStates), 0, UpdateRate);
     }
     
     private void Update() {
@@ -50,7 +51,7 @@ public class GameOfLife : MonoBehaviour {
 
     public Dictionary<String, Cell> Cells = new Dictionary<string, Cell>();
 
-    public int GetNeighbors(Cell cell) {
+    private int GetNeighbors(Cell cell) {
         int x = cell.X;
         int y = cell.Y;
         int value = 0;
@@ -86,7 +87,7 @@ public class GameOfLife : MonoBehaviour {
         System.Random random = new System.Random();
         for (int y = 0; y < Height; y++) {
             for (int x = 0; x < Width; x++) {
-                GameObject gobject = new GameObject("X:" + x + "Y:" + y);
+                GameObject gobject = Instantiate(new GameObject("X:" + x + "Y:" + y), new Vector2(x, y), Quaternion.identity);
                 gobject.AddComponent<SpriteRenderer>();
                 int randomnumber = random.Next(-1, 3);
                 string key = "X:" + x + "Y:" + y;
@@ -98,11 +99,11 @@ public class GameOfLife : MonoBehaviour {
                     Cell cell = new Cell(x, y, State.Dead, gobject);
                     Cells.Add(key, cell);
                 }
-                Instantiate(gobject);
             }
         }
     }
-    public IEnumerator NewGrid() {
+    
+    private IEnumerator NewGrid() {
         System.Random random = new System.Random();
         foreach (var cell in Cells.Values) {
             Destroy(cell.Gobject);
@@ -133,7 +134,7 @@ public class GameOfLife : MonoBehaviour {
             for (int x = 0; x < Width; x++) {
                 Cell cell = GetCell(x, y);
                 var s = cell.Gobject.GetComponent<SpriteRenderer>();
-                cell.Gobject.transform.position = new Vector2(x, y);
+                
                 if (GetCell(x, y).State == State.Alive) {
                     s.color = Color.white;
                 }

@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ContentModelStore">
     <e p="\app" t="IncludeRecursive" />
-    <e p="\de69671d" t="IncludeRecursive" />
+    <e p="\c0a78ffe" t="IncludeRecursive" />
     <e p="C:\Users\Tarik\.Rider2018.2\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Tarik\.Rider2018.2\system\resharper-host\local\Transient\ReSharperHost\v182\SolutionCaches\_GameOfLife.1461069816.00" t="ExcludeRecursive" />
-    <e p="C:\xampp\htdocs\GameOfLife" t="IncludeRecursive">
+    <e p="C:\Users\Tarik\.Rider2018.2\system\resharper-host\local\Transient\ReSharperHost\v182\SolutionCaches\_GameOfLife.1424955133.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Tarik\Documents\Unity\GameOfLife" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="GameOfLife.cs" t="Include" />
